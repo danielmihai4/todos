@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :list_users
+  has_many :lists, through: :list_users
 
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)

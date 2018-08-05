@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "user/registrations"}
   resources :friendships
   resources :users, only: [:show]
+  resources :lists
 
   root 'pages#home'
   get 'my_friends', to: 'users#my_friends'

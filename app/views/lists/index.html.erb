@@ -1,0 +1,21 @@
+<h1>All Lists</h1>
+
+<% if @lists.size > 0 %>
+  <% @lists.each do |list| %>
+    <div class="row">
+      <div class="col-md-12 well">
+        <h4><%= link_to list.name, list_path(list) %></h4>
+        <p>
+          <span class="quiet">
+            <small> Created <%= time_ago_in_words(list.created_at) %> ago.</small>
+          </span>
+        </p>
+        
+      </div>
+    </div>
+  <% end %>
+<% else %>
+<div class="row col-lg-12">
+  <p class="lead" align="center">You don't have any lists yet. Please add some!</p>
+</div>
+<% end %>
