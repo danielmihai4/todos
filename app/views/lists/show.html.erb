@@ -1,1 +1,41 @@
-<h1>Displaying <%= @list.name %></h1>
+<%= csrf_meta_tags %>
+
+<div class="well well-sm" align="center">
+  <h1><%= @list.name %></h1>
+  <%= link_to "New Item", new_list_item_path(@list), class: "btn btn-lg btn-primary" %>
+</div>
+
+<h2> Shared with:</h2>
+<div class="container">
+  <div class="well well-sm row">
+  <% @list.users.each do |user| %>
+    <% if user != current_user %>
+      <h3><%= user.full_name %></h3>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<h2 align="center"> Items </h2>
+
+<div class="container">
+  <div class="well well-sm row">
+    <% @list.items.each do |item| %>
+      <div class="col-xs-1 col-md-1">
+        <% if item.is_done %>
+          <span class="glyphicon glyphicon-check" aria-hidden="true" id="item-state-<%= item.id %>"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-unchecked" aria-hidden="true" id="item-state-<%= item.id %>"></span>
+        <% end %>
+      </div>
+      <div class="col-xs-5 col-md-7">
+        <a href="#" class="label label-default" title="Info" data-toggle="popover" data-trigger="focus" data-content="<%= item.info %>" item-id="<%= item.id %>"><%= item.name %></a>
+      </div>
+      <div class="col-xs-6 col-md-4" align="right">
+        <% if item.due_date != nil %>
+          Due <%= item.due_date.to_formatted_s(:short) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<div class="container">

@@ -4,13 +4,15 @@
   <% @lists.each do |list| %>
     <div class="row">
       <div class="col-md-12 well">
-        <h4><%= link_to list.name, list_path(list) %></h4>
+        <h4>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <span class="list-title"><%= link_to list.name, list_path(list) %></span></h4>
         <p>
           <span class="quiet">
             <small> Created <%= time_ago_in_words(list.created_at) %> ago.</small>
           </span>
         </p>
-        
+
       </div>
     </div>
   <% end %>

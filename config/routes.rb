@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+  post 'toggle_item_state/:id/:state', to: 'items#toggle_state'
+
   devise_for :users, :controllers => {:registrations => "user/registrations"}
   resources :friendships
   resources :users, only: [:show]
-  resources :lists
+  resources :lists do
+    resources :items
+
+  end
 
   root 'pages#home'
   get 'my_friends', to: 'users#my_friends'
