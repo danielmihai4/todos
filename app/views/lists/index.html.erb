@@ -1,18 +1,33 @@
-<h1>All Lists</h1>
+<h1 align="center">All Lists</h1>
 
 <% if @lists.size > 0 %>
   <% @lists.each do |list| %>
-    <div class="row">
-      <div class="col-md-12 well">
-        <h4>
-          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-          <span class="list-title"><%= link_to list.name, list_path(list) %></span></h4>
-        <p>
-          <span class="quiet">
-            <small> Created <%= time_ago_in_words(list.created_at) %> ago.</small>
-          </span>
-        </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 well">
+          <div class="col-md-10">
+            <h4>
+              <i class="fa fa-list-ul"></i>
+              <span class="list-title"><%= link_to list.name, list_path(list) %></span>
+            </h4>
+          </div>
+          <div class="col-md-2">
+            <%= link_to edit_list_path(list), class: "btn btn-success" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
 
+            <%= link_to list_path(list), method: :delete, data: {confirm: "Are you sure you want to delete this list?"}, class: "btn btn-danger" do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
+
+          <p>
+            <span class="quiet">
+              <small> Created <%= time_ago_in_words(list.created_at) %> ago.</small>
+            </span>
+          </p>
+
+        </div>
       </div>
     </div>
   <% end %>

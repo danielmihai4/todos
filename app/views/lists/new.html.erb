@@ -5,19 +5,19 @@
   <div class="col-md-12">
     <%= form_for(@list, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
-        <div class="control-label col-md-2">
+        <div class="control-label col-md-2 col-xs-2">
           <%= f.label :name %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10 col-xs-10">
           <%= f.text_field :name, class: "form-control", placeholder: "List name", autofocus: true %>
         </div>
       </div>
 
       <div class="form-group">
-        <div class="control-label col-md-2">
+        <div class="control-label col-md-2 col-xs-2">
           <%= f.label :friends %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10 col-xs-10">
           <ul style="padding: 0px;">
             <%= f.collection_check_boxes :user_ids, @friends, :id, :full_name do |cb| %>
               <li style="list-style-type: none;"><%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %></li>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-offset-2 col-md-10 col-xs-offset-2 col-xs-10">
           <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %>
         </div>
       </div>

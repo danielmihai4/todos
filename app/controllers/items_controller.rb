@@ -12,8 +12,22 @@ class ItemsController < ApplicationController
     @item.completed_at = is_done ? DateTime.now : nil
     @item.save
 
-    respond_to do |format|
-      format.js
-    end
+    render :json => {:item_info => @item.info}
   end
+
+  def create
+    @item = Item.new(item_params)
+
+    if @item.save
+      render :json => {:id => @item.id, :name => @item.name, :due_date => @item.due_date.to_formatted_s(:short)}
+    else
+
+    end
+
+  end
+
+  private
+    def item_params
+      params.permit(:name, :due_date, :list_id)
+    end
 end
