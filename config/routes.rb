@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount API => '/'
+
   post 'toggle_item_state/:id/:state', to: 'items#toggle_state'
 
   devise_for :users, :controllers => {:registrations => "user/registrations"}

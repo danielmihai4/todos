@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :list_users
   has_many :lists, through: :list_users
+  has_many :authentication_tokens
 
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)
