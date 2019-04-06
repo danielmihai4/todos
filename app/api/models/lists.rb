@@ -86,7 +86,7 @@ module Models
 
             list = List.find(params[:list_id])
 
-            if list && list.user_id == @current_user.id
+            if list
               begin
                 puts "DUE DATE: #{params[:due_date]}"
                 due_date = DateTime.strptime(params[:due_date], "%Y-%m-%d %H:%M:%S%z")
@@ -115,7 +115,7 @@ module Models
 
             list = List.find(params[:list_id])
 
-            if list && list.user_id == @current_user.id
+            if list
               item = Item.find(params[:item_id])
 
               if item.list_id == list.id
