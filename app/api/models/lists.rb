@@ -147,7 +147,7 @@ module Models
             begin
               list = List.find(params[:list_id])
 
-              if list && list.user_id == @current_user.id
+              if list
                 item = Item.find(params[:item_id])
 
                 if item.list_id == list.id
