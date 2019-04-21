@@ -33,7 +33,7 @@ module Models
           authenticate!
 
           users = User.search(params[:query])
-          users = @current_user.except_current_user(users)
+          users = @current_user.strangers(users)
 
           status 200
           present users, with: Entities::UserSearchResultEntity
