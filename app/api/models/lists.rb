@@ -56,6 +56,26 @@ module Models
           end
         end
       end
+      
+      namespace :show do
+        desc "Retrieve list"
+        params do
+          requires :token, type: String, desc: "token"
+          requires :id, type: String, desc: "list id"
+        end
+
+        get do
+          authenticate!
+
+          list = List.find(params[:id])
+
+          if list
+            present list, with: Entities::ListEntity
+          else
+            error!({"error_msg" => "List not found."}, 404)
+          end
+        end
+      end
 
       namespace :index do
         desc "List all lists of a user"
