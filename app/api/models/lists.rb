@@ -88,8 +88,7 @@ module Models
 
             if list
               begin
-                puts "DUE DATE: #{params[:due_date]}"
-                due_date = DateTime.strptime(params[:due_date], "%Y-%m-%d %H:%M:%S%z")
+                due_date = DateTime.strptime(params[:due_date], "%d/%m/%Y")
                 item = Item.create!({name: params[:name], due_date: due_date, list_id: list.id})
 
                 present item, with: Entities::ItemEntity
